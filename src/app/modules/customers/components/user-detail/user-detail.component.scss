@@ -1,0 +1,30 @@
+@use 'theme';
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+
+  @media (max-width: 959.98px) {
+    grid-template-columns: auto;
+    padding: 0;
+  }
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+
+  img {
+    padding: 1rem;
+    border: 1px solid theme.$colors-border-grey;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}

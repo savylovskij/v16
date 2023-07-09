@@ -1,1 +1,1 @@
-export { MainLayoutComponent } from './component/layout/main-layout.component';
+export { MainLayoutComponent } from './components/layout/main-layout.component';

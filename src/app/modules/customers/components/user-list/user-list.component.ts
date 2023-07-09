@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-user-list',
   standalone: true,
-  templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.scss'],
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainHeaderComponent {}
+export class UserListComponent {}

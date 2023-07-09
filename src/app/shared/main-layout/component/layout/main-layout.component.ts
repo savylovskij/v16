@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { MainFooterComponent } from '../footer/main-footer.component';
 import { MainHeaderComponent } from '../header/main-header.component';
 

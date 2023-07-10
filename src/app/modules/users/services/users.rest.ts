@@ -5,8 +5,8 @@ import { RestService } from '@app/shared/services';
 
 import { User } from '../models';
 
-@Injectable()
-export class UsersService extends RestService {
+@Injectable({ providedIn: 'root' })
+export class UsersRest extends RestService {
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }

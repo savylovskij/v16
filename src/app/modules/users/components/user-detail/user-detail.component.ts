@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgIf, NgOptimizedImage } from '@angular/common';
+
+import { UserStore } from '../../services';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,6 +9,10 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, NgIf],
 })
-export class UserDetailComponent {}
+export class UserDetailComponent {
+  private readonly userStore = inject(UserStore);
+
+  public readonly selectedUser = this.userStore.selectedUser;
+}

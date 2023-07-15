@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NgForOf, NgIf } from '@angular/common';
+
+import { UserStore } from '../../services';
 
 @Component({
   selector: 'app-user-list',
@@ -6,5 +9,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgForOf, NgIf],
 })
-export class UserListComponent {}
+export class UserListComponent {
+  private readonly userStore = inject(UserStore);
+
+  public readonly userList = this.userStore.userList;
+
+  public onSelectedUser(id: number): void {
+    this.userStore.setSelectedUser(id);
+  }
+}

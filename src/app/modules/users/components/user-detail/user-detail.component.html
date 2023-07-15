@@ -1,13 +1,30 @@
-<div class="avatar">
-  <img ngSrc="assets/icons/user.svg" alt="user" height="150" width="150" />
-</div>
+<ng-container *ngIf="selectedUser() as user">
+  <div class="avatar">
+    <img
+      ngSrc="assets/icons/user.svg"
+      alt="user"
+      height="150"
+      width="150"
+      priority
+    />
+  </div>
 
-<ul class="list">
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-  <li>Item 4</li>
-  <li>Item 5</li>
-  <li>Item 6</li>
-  <li>Item 7</li>
-</ul>
+  <ul class="list">
+    <li class="list-item">
+      <span>Username:</span>
+      <span>{{ user.username }}</span>
+    </li>
+    <li class="list-item">
+      <span>Phone:</span>
+      <span>{{ user.phone }}</span>
+    </li>
+    <li class="list-item">
+      <span>Email:</span>
+      <span>{{ user.email }}</span>
+    </li>
+    <li class="list-item">
+      <span>Website:</span>
+      <span>{{ user.website }}</span>
+    </li>
+  </ul>
+</ng-container>

@@ -1,5 +1,9 @@
-<div *ngIf="loading(); else userListTmp" class="spinner">
-  <mat-spinner></mat-spinner>
+<div *ngIf="loading(); else userListTmp" class="skeleton">
+  <app-skeleton
+    *appRepeat="8"
+    [style.height.rem]="1"
+    [style.width.%]="{ min: 20, max: 70 } | randomRange"
+  ></app-skeleton>
 </div>
 <ng-template #userListTmp>
   <ul class="list">

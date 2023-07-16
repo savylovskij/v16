@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { RepeatDirective } from '@app/shared/directives/repeat';
+import { RandomRangePipe } from '@app/shared/pipes/random-range';
+import { SkeletonComponent } from '@app/shared/components/skeleton';
 
 import { UserStore } from '../../services';
 
@@ -10,7 +13,7 @@ import { UserStore } from '../../services';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgForOf, NgIf, MatProgressSpinnerModule],
+  imports: [NgForOf, NgIf, SkeletonComponent, RepeatDirective, RandomRangePipe],
 })
 export class UserListComponent {
   private readonly userStore = inject(UserStore);

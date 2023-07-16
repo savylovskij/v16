@@ -1,5 +1,5 @@
 @use 'sass:color';
-@use 'theme';
+@use '../../../../../scss/public/theme';
 
 $-color: theme.$colors-skeleton-grey;
 

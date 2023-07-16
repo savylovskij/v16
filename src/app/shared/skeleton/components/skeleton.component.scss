@@ -1,0 +1,25 @@
+@use 'sass:color';
+@use 'theme';
+
+$-color: theme.$colors-skeleton-grey;
+
+:host {
+  display: block;
+  border-radius: 1rem;
+
+  background: $-color;
+  background: linear-gradient(
+    110deg,
+    color.adjust($-color, $lightness: 1%) 8%,
+    color.adjust($-color, $lightness: 3%) 18%,
+    color.adjust($-color, $lightness: 1%) 33%
+  );
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+}

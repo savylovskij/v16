@@ -24,12 +24,11 @@ export class UserStore {
   public readonly userList = toSignal(this.userList$, {
     initialValue: [],
   });
-
-  public readonly selectedUserId = signal(0);
-
   public readonly selectedUser = computed(() =>
     this.userList().find(({ id }) => this.selectedUserId() === id)
   );
+
+  private readonly selectedUserId = signal(0);
 
   public setSelectedUser(id: number): void {
     this.selectedUserId.set(id);

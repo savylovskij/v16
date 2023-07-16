@@ -1,1 +1,6 @@
-<p>posts-layout works!</p>
+<app-posts-list
+  [postsLis]="postList()"
+  [loading]="loadingPostsList()"
+  (selectedPost)="selectedPost($event)"
+/>
+<app-post-detail [post]="post()" [loading]="loadingPost()" />

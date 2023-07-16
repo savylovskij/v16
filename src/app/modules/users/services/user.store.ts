@@ -2,11 +2,11 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { catchError, finalize, of, switchMap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
-import { UsersRest } from './users.rest';
+import { UsersRestService } from './users-rest.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserStore {
-  private readonly userRest = inject(UsersRest);
+  private readonly usersRestService = inject(UsersRestService);
 
   public readonly loading = signal(false);
 
@@ -14,7 +14,7 @@ export class UserStore {
     switchMap(() => {
       this.loading.set(true);
 
-      return this.userRest.getUsers().pipe(
+      return this.usersRestService.getUsers().pipe(
         catchError(() => of([])),
         finalize(() => this.loading.set(false))
       );

@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 2rem;
+
+  @media (max-width: 599.98px) {
+    grid-template-columns: auto;
+  }
+}

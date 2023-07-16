@@ -1,0 +1,21 @@
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  align-items: center;
+  justify-content: start;
+  grid-gap: 0.5rem;
+}

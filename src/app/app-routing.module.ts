@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainLayoutComponent } from './shared/components/main-layout';
-import { UserLayoutComponent } from './modules/users/components';
+import { UsersLayoutComponent } from './modules/users/components';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: UserLayoutComponent,
+        component: UsersLayoutComponent,
       },
     ],
   },

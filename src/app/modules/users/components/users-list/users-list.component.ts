@@ -8,14 +8,14 @@ import { SkeletonComponent } from '@app/shared/components/skeleton';
 import { UserStore } from '../../services';
 
 @Component({
-  selector: 'app-user-list',
+  selector: 'app-users-list',
   standalone: true,
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss'],
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgForOf, NgIf, SkeletonComponent, RepeatDirective, RandomRangePipe],
 })
-export class UserListComponent {
+export class UsersListComponent {
   private readonly userStore = inject(UserStore);
 
   public readonly userList = this.userStore.userList;

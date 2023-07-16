@@ -1,1 +1,1 @@
-export { UserLayoutComponent } from './user-layout';
+export { UsersLayoutComponent } from './users-layout';

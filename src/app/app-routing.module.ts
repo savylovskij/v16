@@ -9,9 +9,13 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
+      { path: '', component: UsersLayoutComponent },
       {
-        path: '',
-        component: UsersLayoutComponent,
+        path: 'posts',
+        loadComponent: () =>
+          import('./modules/posts/components').then(
+            m => m.PostsLayoutComponent
+          ),
       },
     ],
   },

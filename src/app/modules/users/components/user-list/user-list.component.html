@@ -1,9 +1,14 @@
-<ul class="list">
-  <li
-    class="item"
-    *ngFor="let user of userList()"
-    (click)="onSelectedUser(user.id)"
-  >
-    {{ user.username }}
-  </li>
-</ul>
+<div *ngIf="loading(); else userListTmp" class="spinner">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #userListTmp>
+  <ul class="list">
+    <li
+      class="item"
+      *ngFor="let user of userList()"
+      (click)="onSelectedUser(user.id)"
+    >
+      {{ user.username }}
+    </li>
+  </ul>
+</ng-template>

@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { catchError, of } from 'rxjs';
+import { catchError, finalize, of, switchMap, take } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { UsersRest } from './users.rest';
@@ -8,9 +8,19 @@ import { UsersRest } from './users.rest';
 export class UserStore {
   private readonly userRest = inject(UsersRest);
 
-  private readonly userList$ = this.userRest
-    .getUsers()
-    .pipe(catchError(() => of([])));
+  public readonly loading = signal(false);
+
+  private readonly userList$ = of(null).pipe(
+    switchMap(() => {
+      this.loading.set(true);
+
+      return this.userRest.getUsers().pipe(
+        take(1),
+        catchError(() => of([])),
+        finalize(() => this.loading.set(false))
+      );
+    })
+  );
 
   public readonly userList = toSignal(this.userList$, {
     initialValue: [],

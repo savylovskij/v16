@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatToolbarModule],
+  imports: [MatToolbarModule, RouterLink],
 })
 export class MainHeaderComponent {}

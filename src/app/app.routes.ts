@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { MainLayoutComponent } from './shared/components/main-layout';
 import { UsersLayoutComponent } from './modules/users/components';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
@@ -20,12 +19,3 @@ const routes: Routes = [
     ],
   },
 ];
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'top',
-      anchorScrolling: 'enabled',
-    }),
-  ],
-})
-export class AppRoutingModule {}

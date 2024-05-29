@@ -40,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "eslint": "^8.57.0",
+    "husky": "^8.0.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -47,8 +48,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "lint-staged": "^13.2.3",
-    "prettier": "2.8.8",
-    "typescript": "~5.4.5",
-    "husky": "^8.0.0"
+    "prettier": "^3.2.5",
+    "typescript": "~5.4.5"
   }
 }

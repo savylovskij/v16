@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
 
 import { RepeatDirective } from '@app/shared/directives/repeat';
 import { RandomRangePipe } from '@app/shared/pipes/random-range';
@@ -13,7 +12,7 @@ import { UserStore } from '../../services';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgForOf, NgIf, SkeletonComponent, RepeatDirective, RandomRangePipe],
+  imports: [SkeletonComponent, RepeatDirective, RandomRangePipe],
 })
 export class UsersListComponent {
   private readonly userStore = inject(UserStore);

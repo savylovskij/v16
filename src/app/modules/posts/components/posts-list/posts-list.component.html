@@ -1,18 +1,17 @@
-<div *ngIf="loading; else postsListTmp" class="skeleton">
-  <app-skeleton
-    *appRepeat="8"
-    [style.height.rem]="1"
-    [style.width.%]="{ min: 20, max: 70 } | randomRange"
-  ></app-skeleton>
-</div>
-<ng-template #postsListTmp>
+@if (loading()) {
+  <div class="skeleton">
+    <app-skeleton
+      *appRepeat="8"
+      [style.height.rem]="1"
+      [style.width.%]="{ min: 20, max: 70 } | randomRange"
+    />
+  </div>
+} @else {
   <ul class="list">
-    <li
-      class="item"
-      *ngFor="let post of postsLis"
-      (click)="selectedPost.emit(post.id)"
-    >
-      {{ post.title }}
-    </li>
+    @for (post of postsLis(); track post.id) {
+      <li class="item" (click)="selectedPost.emit(post.id)">
+        {{ post.title }}
+      </li>
+    }
   </ul>
-</ng-template>
+}

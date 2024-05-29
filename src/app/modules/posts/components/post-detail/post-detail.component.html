@@ -1,20 +1,20 @@
-<div *ngIf="loading; else postTmp" class="skeleton">
-  <app-skeleton
-    *appRepeat="4"
-    [style.height.rem]="1"
-    [style.width.%]="{ min: 20, max: 70 } | randomRange"
-  ></app-skeleton>
-</div>
-
-<ng-template #postTmp>
+@if (loading()) {
+  <div class="skeleton">
+    <app-skeleton
+      *appRepeat="4"
+      [style.height.rem]="1"
+      [style.width.%]="{ min: 20, max: 70 } | randomRange"
+    />
+  </div>
+} @else {
   <ul class="list">
     <li class="list-item">
       <span>Title:</span>
-      <span>{{ post?.title }}</span>
+      <span>{{ post()?.title }}</span>
     </li>
     <li class="list-item">
       <span>Body:</span>
-      <span>{{ post?.body }}</span>
+      <span>{{ post()?.body }}</span>
     </li>
   </ul>
-</ng-template>
+}

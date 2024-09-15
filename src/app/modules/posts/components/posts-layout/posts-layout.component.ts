@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { PostService } from '../../services';
-import { PostsListComponent } from '../posts-list';
 import { PostDetailComponent } from '../post-detail';
+import { PostsListComponent } from '../posts-list';
 
 @Component({
   selector: 'app-posts-layout',
@@ -15,10 +16,16 @@ import { PostDetailComponent } from '../post-detail';
 export class PostsLayoutComponent {
   private readonly postService = inject(PostService);
 
-  public readonly postList = this.postService.postsList;
+  public readonly postList = toSignal(this.postService.postsList$, {
+    initialValue: [],
+  });
+
   public readonly loadingPostsList = this.postService.loadingPostsList;
 
-  public readonly post = this.postService.post;
+  public readonly post = toSignal(this.postService.post$, {
+    initialValue: null,
+  });
+
   public readonly loadingPost = this.postService.loadingPost;
 
   public selectedPost(id: number): void {

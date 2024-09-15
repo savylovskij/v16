@@ -7,32 +7,20 @@ import { PostRestService } from './post-rest.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
-  public readonly loadingPostsList = signal(false);
-  public readonly loadingPost = signal(false);
-
-  private readonly postRestService = inject(PostRestService);
-
-  public readonly postsList$ = of(null).pipe(
-    switchMap(() => {
-      this.loadingPostsList.set(true);
-
-      return this.postRestService.getPosts().pipe(
-        catchError(() => of([])),
-        finalize(() => this.loadingPostsList.set(false)),
-      );
-    }),
-  );
+  public readonly isLoading = signal(false);
 
   private readonly selectedPostId = signal(0);
+
+  private readonly postRestService = inject(PostRestService);
 
   public readonly post$ = toObservable(this.selectedPostId).pipe(
     filter<number>(Boolean),
     switchMap(postId => {
-      this.loadingPost.set(true);
+      this.isLoading.set(true);
 
       return this.postRestService.getPost(postId).pipe(
         catchError(() => of(null)),
-        finalize(() => this.loadingPost.set(false)),
+        finalize(() => this.isLoading.set(false)),
       );
     }),
   );

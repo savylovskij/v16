@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { MainLayoutComponent } from './shared/components/main-layout';
 import { UsersLayoutComponent } from './modules/users/components';
+import { MainLayoutComponent } from './shared/components/main-layout';
 
 export const routes: Routes = [
   {
@@ -13,8 +13,9 @@ export const routes: Routes = [
         path: 'posts',
         loadComponent: () =>
           import('./modules/posts/components').then(
-            m => m.PostsLayoutComponent
+            m => m.PostsLayoutComponent,
           ),
+        title: 'Posts List',
       },
     ],
   },

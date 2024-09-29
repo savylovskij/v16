@@ -28,6 +28,10 @@ describe('PostsService', () => {
     ) as jasmine.SpyObj<PostRestService>;
   });
 
+  it('should create service', () => {
+    expect(service).toBeTruthy();
+  });
+
   it('should set initialize isLoading false', () => {
     expect(service.isLoading()).toBeFalse();
   });

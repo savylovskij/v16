@@ -33,7 +33,7 @@ describe('PostsService', () => {
   });
 
   it('should set initialize isLoading false', () => {
-    expect(service.isLoading()).toBeFalse();
+    expect(service.isLoading()).toBeFalsy();
   });
 
   it('should set isLoading to true when postsList$ is subscribed and false after completion', () => {
@@ -41,9 +41,9 @@ describe('PostsService', () => {
 
     service.postsList$
       .pipe(
-        tap(() => expect(service.isLoading()).toBeTrue()),
+        tap(() => expect(service.isLoading()).toBeTruthy()),
         take(1),
-        finalize(() => expect(service.isLoading()).toBeFalse()),
+        finalize(() => expect(service.isLoading()).toBeFalsy()),
       )
       .subscribe();
   });
@@ -56,7 +56,7 @@ describe('PostsService', () => {
     service.postsList$
       .pipe(
         take(1),
-        finalize(() => expect(service.isLoading()).toBeFalse()),
+        finalize(() => expect(service.isLoading()).toBeFalsy()),
       )
       .subscribe();
   });

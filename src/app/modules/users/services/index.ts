@@ -1,1 +1,1 @@
-export { UserStore } from './user.store';
+export { UsersRestService } from './users-rest.service';

@@ -1,17 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
-import { UserStore } from '../../services';
+import { User } from '../../models';
 
 @Component({
-    selector: 'app-user-detail',
-    templateUrl: './user-detail.component.html',
-    styleUrls: ['./user-detail.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgOptimizedImage]
+  selector: 'app-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgOptimizedImage],
 })
 export class UserDetailComponent {
-  private readonly userStore = inject(UserStore);
-
-  public readonly selectedUser = this.userStore.selectedUser;
+  public readonly user = input.required<User>();
 }

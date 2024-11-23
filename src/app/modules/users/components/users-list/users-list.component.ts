@@ -1,25 +1,26 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 
+import { SkeletonComponent } from '@app/shared/components/skeleton';
 import { RepeatDirective } from '@app/shared/directives/repeat';
 import { RandomRangePipe } from '@app/shared/pipes/random-range';
-import { SkeletonComponent } from '@app/shared/components/skeleton';
 
-import { UserStore } from '../../services';
+import { User } from '../../models';
 
 @Component({
-    selector: 'app-users-list',
-    templateUrl: './users-list.component.html',
-    styleUrls: ['./users-list.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [SkeletonComponent, RepeatDirective, RandomRangePipe]
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SkeletonComponent, RandomRangePipe, RepeatDirective],
 })
 export class UsersListComponent {
-  private readonly userStore = inject(UserStore);
+  public readonly userList = input<User[]>([]);
+  public readonly isLoading = input(false);
 
-  public readonly userList = this.userStore.userList;
-  public readonly loading = this.userStore.loading;
-
-  public onSelectedUser(id: number): void {
-    this.userStore.setSelectedUser(id);
-  }
+  public readonly selectedUser = output<User>();
 }

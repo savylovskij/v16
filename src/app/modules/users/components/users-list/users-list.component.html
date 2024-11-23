@@ -1,4 +1,4 @@
-@if (loading()) {
+@if (isLoading()) {
   <div class="skeleton">
     <app-skeleton
       *appRepeat="8"
@@ -9,7 +9,7 @@
 } @else {
   <ul class="list">
     @for (user of userList(); track user.id) {
-      <li class="item" (click)="onSelectedUser(user.id)">
+      <li class="item" (click)="selectedUser.emit(user)">
         {{ user.username }}
       </li>
     }

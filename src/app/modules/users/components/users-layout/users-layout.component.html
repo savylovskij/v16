@@ -1,2 +1,9 @@
-<app-users-list />
-<app-user-detail />
+<app-users-list
+  [userList]="userList()"
+  [isLoading]="isLoading()"
+  (selectedUser)="setSelectedUser($event)"
+/>
+
+@if (selectedUser(); as user) {
+  <app-user-detail [user]="user" />
+}

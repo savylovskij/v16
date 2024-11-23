@@ -7,12 +7,11 @@ import { SkeletonComponent } from '@app/shared/components/skeleton';
 import { UserStore } from '../../services';
 
 @Component({
-  selector: 'app-users-list',
-  standalone: true,
-  templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SkeletonComponent, RepeatDirective, RandomRangePipe],
+    selector: 'app-users-list',
+    templateUrl: './users-list.component.html',
+    styleUrls: ['./users-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [SkeletonComponent, RepeatDirective, RandomRangePipe]
 })
 export class UsersListComponent {
   private readonly userStore = inject(UserStore);

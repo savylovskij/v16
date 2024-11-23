@@ -6,12 +6,11 @@ import { PostDetailComponent } from '../post-detail';
 import { PostsListComponent } from '../posts-list';
 
 @Component({
-  selector: 'app-posts-layout',
-  standalone: true,
-  templateUrl: './posts-layout.component.html',
-  styleUrls: ['./posts-layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [PostsListComponent, PostDetailComponent],
+    selector: 'app-posts-layout',
+    templateUrl: './posts-layout.component.html',
+    styleUrls: ['./posts-layout.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [PostsListComponent, PostDetailComponent]
 })
 export class PostsLayoutComponent {
   private readonly postService = inject(PostService);

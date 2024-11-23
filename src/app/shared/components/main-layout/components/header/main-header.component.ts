@@ -3,11 +3,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatToolbarModule, RouterLink],
+    selector: 'app-header',
+    templateUrl: './main-header.component.html',
+    styleUrls: ['./main-header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MatToolbarModule, RouterLink]
 })
 export class MainHeaderComponent {}

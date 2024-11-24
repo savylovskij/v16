@@ -1,6 +1,6 @@
 <app-posts-list
   (selectedPost)="selectedPost($event)"
-  [loading]="loadingList()"
+  [isLoading]="loadingList()"
   [postsLis]="postList()"
 />
-<app-post-detail [loading]="loadingPost()" [post]="post()" />
+<app-post-detail [isLoading]="loadingPost()" [post]="post()" />

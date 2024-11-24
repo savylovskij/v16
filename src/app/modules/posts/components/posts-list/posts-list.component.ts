@@ -1,15 +1,16 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  input,
+  inject,
   output,
+  resource,
 } from '@angular/core';
 
 import { SkeletonComponent } from '@app/shared/components/skeleton';
 import { RepeatDirective } from '@app/shared/directives/repeat';
 import { RandomRangePipe } from '@app/shared/pipes/random-range';
 
-import { Post } from '../../models';
+import { PostRestService } from '../../services';
 
 @Component({
   selector: 'app-posts-list',
@@ -19,8 +20,14 @@ import { Post } from '../../models';
   imports: [RandomRangePipe, RepeatDirective, SkeletonComponent],
 })
 export class PostsListComponent {
-  public readonly postsLis = input<Post[]>([]);
-  public readonly isLoading = input(false);
+  public readonly selectedPost = output<number>();
 
-  public selectedPost = output<number>();
+  private readonly restService = inject(PostRestService);
+
+  private readonly postsRequest = resource({
+    loader: () => this.restService.getPosts(),
+  });
+
+  protected readonly postsLis = this.postsRequest.value;
+  protected readonly isLoading = this.postsRequest.isLoading;
 }

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { RestService } from '@app/shared/services';
-
 import { User } from '../models';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
-export class UsersRestService extends RestService {
+export class UsersRestService {
   public async getUsers(): Promise<User[]> {
-    const response = await fetch(`${this.apiUrl}/users`);
+    const response = await fetch(`${environment.url}/users`);
 
-    return await response.json();
+    return response.json();
   }
 }

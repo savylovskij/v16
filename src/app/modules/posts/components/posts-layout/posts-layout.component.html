@@ -1,3 +1,5 @@
 <app-posts-list (selectedPost)="selectedPost($event)" />
 
-<app-post-detail [isLoading]="loadingPost()" [post]="post()" />
+@if (postId()) {
+  <app-post-detail [postId]="postId()" />
+}

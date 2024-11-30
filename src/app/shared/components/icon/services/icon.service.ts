@@ -1,54 +1,35 @@
-import { inject, Injectable } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { Observable, of, shareReplay } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+  useFactory: (handler: HttpBackend) => {
+    const http = new HttpClient(handler);
+
+    return new IconService(http);
+  },
+  deps: [HttpBackend],
+})
 export class IconService {
-  private readonly http = inject(HttpClient);
-  private readonly document = inject(DOCUMENT);
+  private readonly iconCache = new Map<string, Observable<string>>();
 
-  private readonly cache = new Map<string, SVGElement>();
+  constructor(private readonly http: HttpClient) {}
 
-  public setIconToCache(key: string, svg: SVGElement): void {
-    this.cache.set(key, svg);
-  }
+  public getIcon(url: string): Observable<string> {
+    if (!this.iconCache.has(url)) {
+      const request = this.fetchIcon(url);
 
-  public getIconFromCache(key: string): SVGElement {
-    return <SVGElement>this.cache.get(key);
-  }
-
-  public hasIconInCache(key: string): boolean {
-    return this.cache.has(key);
-  }
-
-  public load(url: string): Observable<SVGElement> {
-    return this.http.get(url, { responseType: 'text' }).pipe(
-      map(svgString => this.svgElementFromString(svgString)),
-      catchError(() => throwError(() => new Error('Failed to load icon'))),
-    );
-  }
-
-  private svgElementFromString(str: string): SVGElement {
-    const div = this.document.createElement('DIV');
-    div.innerHTML = str as string;
-    const svg = div.querySelector('svg') as SVGElement;
-
-    if (!svg) {
-      throw Error('<svg> tag not found');
+      this.iconCache.set(url, request);
     }
 
-    return this.setSvgAttributes(svg);
+    return this.iconCache.get(url) as Observable<string>;
   }
 
-  private setSvgAttributes(svg: SVGElement): SVGElement {
-    svg.setAttribute('fit', '');
-    svg.setAttribute('height', '100%');
-    svg.setAttribute('width', '100%');
-    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-    svg.setAttribute('focusable', 'false');
-
-    return svg;
+  private fetchIcon(path: string): Observable<string> {
+    return this.http
+      .get(path, { responseType: 'text' })
+      .pipe(shareReplay({ bufferSize: 1, refCount: false }));
   }
 }

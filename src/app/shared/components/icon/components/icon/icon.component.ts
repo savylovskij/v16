@@ -17,7 +17,7 @@ import { catchError, throwError } from 'rxjs';
 import { IconService } from '../../services';
 import { isEmptyString } from '../../../../utils';
 
-function assertValidUrl(url: string): void | never {
+function assertValidUrl(url: unknown): void | never {
   if (isEmptyString(url)) {
     throw new Error('The URL is required');
   }
@@ -78,9 +78,9 @@ export class IconComponent {
     effect(() => {
       const url = this.url();
 
-      if (url) {
-        assertValidUrl(url);
+      assertValidUrl(url);
 
+      if (url) {
         this.configureIcon(url);
       }
     });
